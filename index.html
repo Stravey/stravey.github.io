@@ -145,6 +145,54 @@
         .scroll-wrapper:hover .scroll-content {
             animation-play-state: paused;
         }
+
+        .photo-carousel {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            margin: 10px 0 18px;
+            padding: 8px 0;
+            background: #ffffff;
+        }
+
+        .photo-track {
+            display: flex;
+            width: max-content;
+            gap: 12px;
+            animation: photo-scroll 28s linear infinite;
+        }
+
+        .photo-carousel:hover .photo-track {
+            animation-play-state: paused;
+        }
+
+        .photo-track img {
+            flex: 0 0 auto;
+            height: 135px;
+            width: auto;
+            max-width: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.22);
+        }
+
+        @keyframes photo-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 6px));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .photo-track img {
+                height: 105px;
+                max-width: 170px;
+            }
+        }
     </style>
     <script type="text/javascript" src="./files/jquery-1.12.4.min.js"></script>
 
@@ -373,6 +421,20 @@
 
 </div>
 
+
+<h2>Photos</h2>
+<div class="photo-carousel" aria-label="Photo gallery">
+    <div class="photo-track">
+        <img src="./files/photo/1.jpg" alt="Photo 1">
+        <img src="./files/photo/2.jpg" alt="Photo 2">
+        <img src="./files/photo/1.jpg" alt="Photo 1">
+        <img src="./files/photo/2.jpg" alt="Photo 2">
+        <img src="./files/photo/1.jpg" alt="Photo 1">
+        <img src="./files/photo/2.jpg" alt="Photo 2">
+        <img src="./files/photo/1.jpg" alt="Photo 1">
+        <img src="./files/photo/2.jpg" alt="Photo 2">
+    </div>
+</div>
 
 <h2>Education</h2>
 <div style="height: 10px"></div>
