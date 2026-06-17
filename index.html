@@ -193,6 +193,141 @@
                 max-width: 170px;
             }
         }
+
+        h2 {
+            margin: 34px 0 0;
+            padding: 0 0 14px;
+            border-bottom: 1px solid #d9d0c2;
+            color: #151515;
+            font-family: "Segoe Print", "Comic Sans MS", cursive, Georgia, serif;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .paper-section {
+            margin-top: 0;
+            padding: 0 10px;
+            background-color: #fbf7ee;
+            background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
+            background-size: 24px 24px;
+        }
+
+        .paper-row {
+            display: grid;
+            grid-template-columns: 120px 210px minmax(0, 1fr);
+            gap: 24px;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid #ded6ca;
+        }
+
+        .paper-row:last-child {
+            border-bottom: none;
+        }
+
+        .paper-date {
+            color: #8a8a8a;
+            font-family: "Courier New", monospace;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.45;
+            white-space: nowrap;
+        }
+
+        .paper-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 84px;
+        }
+
+        .paper-media img {
+            max-width: 180px;
+            max-height: 105px;
+            object-fit: contain;
+        }
+
+        .paper-media .paper-icon {
+            color: #202020;
+            font-family: "Courier New", monospace;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .paper-content {
+            min-width: 0;
+        }
+
+        .paper-title {
+            margin: 0 0 8px;
+            color: #111;
+            font-size: 21px;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .paper-meta,
+        .paper-desc {
+            margin: 6px 0 0;
+            color: #555;
+            font-size: 17px;
+            line-height: 1.45;
+        }
+
+        .paper-desc {
+            font-style: italic;
+        }
+
+        .paper-list {
+            padding: 8px 0 0;
+        }
+
+        .paper-list .paper-row {
+            grid-template-columns: 120px 46px minmax(0, 1fr);
+            gap: 18px;
+            padding: 14px 0;
+        }
+
+        .paper-list .paper-media {
+            min-height: 30px;
+        }
+
+        .paper-list .paper-title {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .photo-carousel {
+            background-color: #fbf7ee;
+            background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
+            background-size: 24px 24px;
+            border-bottom: 1px solid #ded6ca;
+            padding: 18px 10px 26px;
+        }
+
+        @media (max-width: 760px) {
+            h2 {
+                font-size: 28px;
+            }
+
+            .paper-row,
+            .paper-list .paper-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                align-items: start;
+            }
+
+            .paper-date {
+                white-space: normal;
+            }
+
+            .paper-media {
+                justify-content: flex-start;
+            }
+        }
     </style>
     <script type="text/javascript" src="./files/jquery-1.12.4.min.js"></script>
 
@@ -285,7 +420,7 @@
 </div>
 
 <h2 style="margin-top: -10px;">Biography</h2>
-<div style="font-size: 15px">
+<div class="paper-section" style="font-size: 15px; padding-top: 12px; padding-bottom: 12px;">
     <p>Hi! I am <b>Yirui Liu(刘弋睿)</b>, a Senior Student at <a href="https://cn.xauat.edu.cn/" target="_blank">
 
     </a>, supervised by <a href="https://guomugong.github.io/">Prof. Song Guo</a>. My research
@@ -304,123 +439,100 @@
 </div>
 
 <h2>News</h2>
-<div style="width: 100%;  background-color: white;">
-    <!--    <div class="scroll-wrapper">-->
-    <!--        <div class="scroll-content">-->
-    <!--            <img src="./files/photo/photo1.jpg" style="height: 80px;">-->
-    <!--            <img src="./files/photo/photo2.jpg" style="height: 80px;">-->
-    <!--            <img src="./files/photo/photo3.jpg" style="height: 80px;">-->
-
-    <!--            <div class="container">-->
-    <!--                <a href="https://yourvideo.link" target="_blank">-->
-    <!--                    <img src="./files/photo/video_thumbnail.jpg" style="height: 80px;">-->
-    <!--                    <div class="video-label">Video</div>-->
-    <!--                </a>-->
-    <!--            </div>-->
-
-    <!--            <img src="./files/photo/photo1.jpg" style="height: 80px;">-->
-    <!--            <img src="./files/photo/photo2.jpg" style="height: 80px;">-->
-    <!--            <img src="./files/photo/photo3.jpg" style="height: 80px;">-->
-
-    <!--            <div class="container">-->
-    <!--                <a href="https://yourvideo.link" target="_blank">-->
-    <!--                    <img src="./files/photo/video_thumbnail.jpg" style="height: 80px;">-->
-    <!--                    <div class="video-label">Video</div>-->
-    <!--                </a>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-        <div id="news-container" style="font-size: small;">
-            <ul style="padding-left: 20px; margin: 0;">
-                <li>
-                    [05/2026] 🎉 [2026 Code Hoof Cup Programming Competition. Coming soon...]
-                </li>
-                <li>
-                    [05/2026] 🎉 [2026 ICPC Shaanxi Provincial Competition. Coming soon...]
-                </li>
-                <li>
-                    [04/2026] 🎉 [Second Prize in the 17th Blue Bridge Cup C++ Provincial Competition]
-                </li>
-                <li>
-                    [02/2026] 🎉 [Successfully passed the College English Test Band 6.Congratulations!]
-                </li>
-                <li>
-                    [12/2025] 🎉 [Second Prize in the CMC Mathematics Competition]
-                </li>
-                <li>
-                    [04/2025] 🎉 [Second Prize in the 16th Blue Bridge Cup C++ Provincial Competition]
-                </li>
-                <li>
-                    [11/2024] 🎉 [A patent was approved for software copyright.]
-                </li>
-                <li>
-                    [11/2024] 🎉 [CUMCM National Second Prize. 1204 teams received this award out of a total of 65761 teams.]
-                </li>
-                <li>
-                    [10/2024] 🎉 [Outstanding Volunteer of the Central Committee of the Communist Youth League]
-                </li>
-                <li>
-                    [10/2024] 🎉 [Approved as a national-level undergraduate innovation and entrepreneurship training program project]
-                </li>
-                <li>
-                    [05/2024] 🎉 [First Prize in the 2024 School-Level Mathematical Modeling Competition]
-                </li>
-                <li>
-                    [02/2024] 🎉 [Successfully passed the College English Test Band 4.Congratulations!]
-                </li>
-                <li>
-                    [09/2022] 🎉 [Successfully admitted to the Computer Science and Technology program at XAUAT]
-                </li>
-
-
-<!--                <li>-->
-<!--                    [04/2025] 🎉 []-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    [11/2024] 🎉 []-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    [07/2022] 🎉 [I have been admitted to XAUAT.]-->
-<!--                </li>-->
-
-<!--                <li style="display: none;">-->
-<!--                    [MM/YYYY] 🎉 [Older news item]-->
-<!--                </li>-->
-<!--                <li style="display: none;">-->
-<!--                    [MM/YYYY] 🎉 [Older news item]-->
-<!--                </li>-->
-            </ul>
-        </div>
-
-        <div style="margin-top: 5px; margin-bottom: 0px;">
-            <button
-                    id="news-toggle-btn"
-                    type="button"
-                    style="cursor: pointer; border: none; background: none; padding: 0; color: #0070f3; font-size: 12px;"
-            >
-                Show more ▾
-            </button>
-        </div>
-
-        <script>
-            (function () {
-                var container = document.getElementById('news-container');
-                var btn = document.getElementById('news-toggle-btn');
-                var lis = container.querySelectorAll('li');
-                var expanded = false;
-
-                btn.addEventListener('click', function () {
-                    expanded = !expanded;
-                    for (var i = 5; i < lis.length; i++) {
-                        lis[i].style.display = expanded ? 'list-item' : 'none';
-                    }
-                    btn.textContent = expanded ? 'Show less ▴' : 'Show more ▾';
-                });
-            })();
-        </script>
-
+<div class="paper-section paper-list" id="news-container">
+    <div class="paper-row">
+        <div class="paper-date">May. 2026</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">2026 Code Hoof Cup Programming Competition. Coming soon...</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">May. 2026</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">2026 ICPC Shaanxi Provincial Competition. Coming soon...</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Apr. 2026</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Second Prize in the 17th Blue Bridge Cup C++ Provincial Competition</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Feb. 2026</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Successfully passed the College English Test Band 6. Congratulations!</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Dec. 2025</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Second Prize in the CMC Mathematics Competition</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Apr. 2025</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Second Prize in the 16th Blue Bridge Cup C++ Provincial Competition</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Nov. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">A patent was approved for software copyright.</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Nov. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">CUMCM National Second Prize. 1204 teams received this award out of 65761 teams.</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Oct. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Outstanding Volunteer of the Central Committee of the Communist Youth League</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Oct. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Approved as a national-level undergraduate innovation and entrepreneurship training program project</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">May. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">First Prize in the 2024 School-Level Mathematical Modeling Competition</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Feb. 2024</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Successfully passed the College English Test Band 4. Congratulations!</p></div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Sep. 2022</div>
+        <div class="paper-media"><span class="paper-icon">*</span></div>
+        <div class="paper-content"><p class="paper-title">Successfully admitted to the Computer Science and Technology program at XAUAT</p></div>
+    </div>
 </div>
 
+<div style="margin-top: 8px; margin-bottom: 0px;">
+    <button id="news-toggle-btn" type="button" style="cursor: pointer; border: none; background: none; padding: 0; color: #3670c9; font-size: 13px;">Show more</button>
+</div>
+
+<script>
+    (function () {
+        var container = document.getElementById('news-container');
+        var btn = document.getElementById('news-toggle-btn');
+        var rows = container.querySelectorAll('.paper-row');
+        var expanded = false;
+
+        function updateNewsRows() {
+            for (var i = 5; i < rows.length; i++) {
+                rows[i].style.display = expanded ? 'grid' : 'none';
+            }
+            btn.textContent = expanded ? 'Show less' : 'Show more';
+        }
+
+        btn.addEventListener('click', function () {
+            expanded = !expanded;
+            updateNewsRows();
+        });
+
+        updateNewsRows();
+    })();
+</script>
 
 <h2>Photos</h2>
 <div class="photo-carousel" aria-label="Photo gallery">
@@ -437,199 +549,129 @@
 </div>
 
 <h2>Education</h2>
-<div style="height: 10px"></div>
-<table id="tbPublications" width="100%">
-    <tbody>
-    <tr>
-        <td width="320">
-            <img src="./files/institute/university_logo.png" width="230px" style="margin-left: 35px">
-        </td>
-        <td>
-            <p><b><a href="https://cn.xauat.edu.cn/"> Xi'an University of Architecture and Technology</a></b>
-                <br><b style="font-size: 12px;"> Computer Science and Technology</b></p>
-            <div style="font-size: 12px"> Bachelor, supervised by Prof. <a href="https://guomugong.github.io/">Song Guo</a>.
-            </div>
-            <div style="font-size: 12px"> 2022.09 - 2026.07 </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">Sep. 2022<br>-<br>Jul. 2026</div>
+        <div class="paper-media"><img src="./files/institute/university_logo.png" alt="XAUAT logo"></div>
+        <div class="paper-content">
+            <p class="paper-title"><a href="https://cn.xauat.edu.cn/">Xi'an University of Architecture and Technology</a></p>
+            <p class="paper-meta"><b>Computer Science and Technology</b></p>
+            <p class="paper-desc">Bachelor, supervised by Prof. <a href="https://guomugong.github.io/">Song Guo</a>.</p>
+        </div>
+    </div>
+</div>
 
 <h2>Research Experience</h2>
-<div style="height: 10px"></div>
-<table id="tbPublications" width="100%">
-    <tbody>
-    <tr>
-        <td width="360">
-            <img src="./files/institute/institute_logo.png" width="120px" style="margin-left: 20px">
-        </td>
-        <td>
-            <b><a href="https://github.com/VantixAI">Vantix AI</a></b>
-            <br>
-            <p style="font-size: 14px;"><b>[2026.02 - now] Xi'an</b>, AI Agent && Computer Vision</p>
-        </td>
-    </tr>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">Feb. 2026<br>-<br>Present</div>
+        <div class="paper-media"><img src="./files/institute/institute_logo.png" alt="Vantix AI logo"></div>
+        <div class="paper-content">
+            <p class="paper-title"><a href="https://github.com/VantixAI">Vantix AI</a></p>
+            <p class="paper-meta"><b>Xi'an</b>, AI Agent && Computer Vision</p>
+            <p class="paper-desc">Building AI agent and computer vision projects.</p>
+        </div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Apr. 2026<br>-<br>Present</div>
+        <div class="paper-media"><span class="paper-icon">Lab</span></div>
+        <div class="paper-content">
+            <p class="paper-title"><a href="https://github.com/VantixAI">XAUAT Lab</a></p>
+            <p class="paper-meta"><b>Research Assistant</b>, Xi'an, Focus On Computer Vision</p>
+            <p class="paper-desc">The robustness of medical image segmentation models.</p>
+        </div>
+    </div>
+</div>
 
-    <tr>
-        <td width="360">
-            <img src="./files/institute/" width="120px" style="margin-left: 20px">
-        </td>
-        <td>
-            <b><a href="https://github.com/VantixAI">XAUAT Lab</a></b>
-            <br>
-            <p style="font-size: 14px;"><b>Research Assistant</b></p>
-            <p style="font-size: 14px;"><b>[2026.04 - now] Xi'an</b>, Focus On Computer Vision</p>
-            <p style="font-size: 14px;"><b>The robustness of medical image segmentation models.</b></p>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<h2> Publications | <a href="https://scholar.google.com/" target="_blank">[My Google Scholar]</a></h2>
-<table id="tbPublications" width="100%" cellspacing='0' style="background-color: #ffffdf;">
-    <tbody>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/work/paper1.png" width="180px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">Paper Title</b>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">Conference/Journal 202X</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://project.page" target="_blank">Project Page</a> / <a
-                    href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<h2>Publications | <a href="https://scholar.google.com/" target="_blank">My Google Scholar</a></h2>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">202X</div>
+        <div class="paper-media"><span class="paper-icon">Paper</span></div>
+        <div class="paper-content">
+            <p class="paper-title">Paper Title</p>
+            <p class="paper-meta">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</p>
+            <p class="paper-desc"><b style="color: red;">Conference/Journal 202X</b></p>
+            <p class="paper-meta"><a href="https://project.page" target="_blank">Project Page</a> / <a href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a></p>
+        </div>
+    </div>
+</div>
 
 <h2>OpenSource</h2>
-<table id="tbPublications" width="100%" cellspacing='0' style="background-color: #ffffdf;">
-    <tbody>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/work/paper1.png" width="180px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">Paper Title</b>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">Conference/Journal 202X</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://project.page" target="_blank">Project Page</a> / <a
-                    href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">202X</div>
+        <div class="paper-media"><span class="paper-icon">Code</span></div>
+        <div class="paper-content">
+            <p class="paper-title">Paper Title</p>
+            <p class="paper-meta">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</p>
+            <p class="paper-desc"><b style="color: red;">Conference/Journal 202X</b></p>
+            <p class="paper-meta"><a href="https://project.page" target="_blank">Project Page</a> / <a href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a></p>
+        </div>
+    </div>
+</div>
 
-<h2> Algorithms </h2>
-<table id="tbPublications" width="100%" cellspacing='0' style="background-color: #ffffdf;">
-    <tbody>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/algorithms/codeforces.png" width="190px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">Codeforces Round 1086(Round 2)</b>
-            <div style="height: 5px;"></div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">2026/3/14</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://project.page" target="_blank">Code</a> / <a
-                    href="https://paper.link" target="_blank">Summary</a>
-            </div>
-        </td>
-    </tr>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/algorithms/" width="190px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">AtCoder Beginner Contest 450</b>
-            <div style="height: 5px;"></div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">2026/3/21</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://github.com/Stravey/Algorithm_Practice/tree/master/AtCoder/Contests/Contest-450" target="_blank">Code</a> / <a
-                    href="https://paper.link" target="_blank">Summary</a>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<h2>Algorithms</h2>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">Mar. 2026</div>
+        <div class="paper-media"><img src="./files/algorithms/codeforces.png" alt="Codeforces"></div>
+        <div class="paper-content">
+            <p class="paper-title">Codeforces Round 1086 (Round 2)</p>
+            <p class="paper-desc"><b style="color: red;">2026/3/14</b></p>
+            <p class="paper-meta"><a href="https://project.page" target="_blank">Code</a> / <a href="https://paper.link" target="_blank">Summary</a></p>
+        </div>
+    </div>
+    <div class="paper-row">
+        <div class="paper-date">Mar. 2026</div>
+        <div class="paper-media"><span class="paper-icon">AC</span></div>
+        <div class="paper-content">
+            <p class="paper-title">AtCoder Beginner Contest 450</p>
+            <p class="paper-desc"><b style="color: red;">2026/3/21</b></p>
+            <p class="paper-meta"><a href="https://github.com/Stravey/Algorithm_Practice/tree/master/AtCoder/Contests/Contest-450" target="_blank">Code</a> / <a href="https://paper.link" target="_blank">Summary</a></p>
+        </div>
+    </div>
+</div>
 
-<h2>Blogs <a href="https://blog.csdn.net/2301_77270865?spm=1000.2115.3001.5343" target="_blank">link </a> </h2>
-<table id="tbPublications" width="100%" cellspacing='0' style="background-color: #ffffdf;">
-    <tbody>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/work/paper1.png" width="180px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">Paper Title</b>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">Conference/Journal 202X</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://project.page" target="_blank">Project Page</a> / <a
-                    href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<h2>Blogs <a href="https://blog.csdn.net/2301_77270865?spm=1000.2115.3001.5343" target="_blank">link</a></h2>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">202X</div>
+        <div class="paper-media"><span class="paper-icon">Blog</span></div>
+        <div class="paper-content">
+            <p class="paper-title">Paper Title</p>
+            <p class="paper-meta">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</p>
+            <p class="paper-desc"><b style="color: red;">Conference/Journal 202X</b></p>
+            <p class="paper-meta"><a href="https://project.page" target="_blank">Project Page</a> / <a href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a></p>
+        </div>
+    </div>
+</div>
 
 <h2>Awards</h2>
-<table id="tbPublications" width="100%" cellspacing='0' style="background-color: #ffffdf;">
-    <tbody>
-    <tr style="width: 100%;">
-        <td width="200px" style="padding-top: 10px; padding-bottom: 10px">
-            <div class="container">
-                <img src="./files/work/paper1.png" width="180px"
-                     style="box-shadow: 4px 4px 4px #888888;  margin-left: 10px; margin-right: 10px;">
-            </div>
-        </td>
-        <td style="padding: 10px">
-            <b style="font-size: 15px; color: #054095;">Paper Title</b>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</div>
-            <div style="height: 5px;"></div>
-            <i><b style="font-size: 12px; color: red;">Conference/Journal 202X</b></i>
-            <div style="height: 5px;"></div>
-            <div style="font-size: 12px"><a href="https://project.page" target="_blank">Project Page</a> / <a
-                    href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">202X</div>
+        <div class="paper-media"><span class="paper-icon">Award</span></div>
+        <div class="paper-content">
+            <p class="paper-title">Paper Title</p>
+            <p class="paper-meta">Author 1, Author 2, <b><u>Your Name</u></b>, Author 3</p>
+            <p class="paper-desc"><b style="color: red;">Conference/Journal 202X</b></p>
+            <p class="paper-meta"><a href="https://project.page" target="_blank">Project Page</a> / <a href="https://paper.link" target="_blank">Paper</a> / <a href="https://arxiv.link" target="_blank">arXiv</a></p>
+        </div>
+    </div>
+</div>
 
 <h2>Contact</h2>
-<p style="font-size: 15px">Email: <a href="https://straveycoding@gmail.com">straveycoding@gmail.com</a></p>
-<p style="font-size: 15px">Address: Xi'an University of Architecture and Technology, Xi'an, China</p>
+<div class="paper-section">
+    <div class="paper-row">
+        <div class="paper-date">Email</div>
+        <div class="paper-media"><img src="./files/icon/email.png" alt="Email"></div>
+        <div class="paper-content">
+            <p class="paper-title"><a href="mailto:straveycoding@gmail.com">straveycoding@gmail.com</a></p>
+            <p class="paper-desc">Xi'an University of Architecture and Technology, Xi'an, China</p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
