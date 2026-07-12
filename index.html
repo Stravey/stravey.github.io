@@ -52,7 +52,116 @@
 
 
         table {
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .profile-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+            gap: 46px;
+            align-items: center;
+            padding: 34px 36px;
+            overflow: hidden;
+            border: 1px solid rgba(120, 120, 128, 0.16);
+            border-radius: 14px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 247, 240, 0.88));
+            box-shadow:
+                0 1px 2px rgba(60, 60, 67, 0.06),
+                0 18px 42px rgba(60, 60, 67, 0.10);
+        }
+
+        .profile-copy {
+            max-width: 690px;
+        }
+
+        .profile-name {
+            margin: 0 0 22px;
+            padding: 0;
+            border-bottom: none;
+            color: #054095;
+            font-size: 42px;
+            line-height: 1.08;
+        }
+
+        #layout-content .profile-hero #toptitle .profile-name {
+            margin: 0 0 22px;
+            padding: 0;
+            border-bottom: none;
+        }
+
+        .profile-tags {
+            display: grid;
+            gap: 12px;
+            margin: 0 0 26px;
+        }
+
+        .profile-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #054095;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .profile-emoji {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 34px;
+            border-radius: 9px;
+            background: rgba(0, 113, 227, 0.08);
+            font-size: 21px;
+        }
+
+        .profile-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .profile-links a {
+            display: inline-flex;
+            border-bottom: none;
+        }
+
+        .profile-links img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 6px 16px rgba(60, 60, 67, 0.14);
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .profile-links a:hover img {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(60, 60, 67, 0.18);
+        }
+
+        .profile-photo-card {
+            width: 100%;
+            max-width: 340px;
+            justify-self: end;
+            padding: 10px;
+            border: 1px solid rgba(120, 120, 128, 0.16);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 18px 42px rgba(60, 60, 67, 0.12);
+        }
+
+        .profile-photo-card img {
+            display: block;
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 11px;
         }
 
         .smaller-image {
@@ -173,8 +282,9 @@
             width: auto;
             max-width: 220px;
             object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.22);
+            border: 1px solid rgba(120, 120, 128, 0.14);
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(60, 60, 67, 0.14);
         }
 
         @keyframes photo-scroll {
@@ -206,11 +316,36 @@
         }
 
         .paper-section {
-            margin-top: 0;
-            padding: 0 10px;
-            background-color: #fbf7ee;
+            margin-top: 12px;
+            padding: 0 18px;
+            overflow: hidden;
+            border: 1px solid rgba(120, 120, 128, 0.16);
+            border-radius: 8px;
+            background-color: rgba(251, 247, 238, 0.94);
             background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
             background-size: 24px 24px;
+            box-shadow:
+                0 1px 2px rgba(60, 60, 67, 0.06),
+                0 10px 28px rgba(60, 60, 67, 0.08);
+        }
+
+        .bio-section {
+            padding: 18px 24px;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
+        .bio-section p {
+            margin: 0 0 14px;
+        }
+
+        .bio-section details {
+            margin-top: 8px;
+        }
+
+        .bio-section summary {
+            cursor: pointer;
+            color: #333;
         }
 
         .paper-row {
@@ -244,7 +379,7 @@
 
         .paper-media img {
             max-width: 200px;
-            max-height: 120px;
+            max-height: 150px;
             object-fit: contain;
         }
 
@@ -300,15 +435,72 @@
             font-weight: 600;
         }
 
+        #algorithms-container .paper-media img {
+            width: 210px;
+            max-width: 210px;
+            max-height: 72px;
+            object-fit: contain;
+        }
+
         .photo-carousel {
             background-color: #fbf7ee;
             background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
             background-size: 24px 24px;
-            border-bottom: 1px solid #ded6ca;
-            padding: 18px 10px 26px;
+            border: 1px solid rgba(120, 120, 128, 0.16);
+            border-radius: 8px;
+            box-shadow:
+                0 1px 2px rgba(60, 60, 67, 0.06),
+                0 10px 28px rgba(60, 60, 67, 0.08);
+            padding: 18px 18px 26px;
+        }
+
+        #news-toggle-btn,
+        #algorithm-toggle-btn {
+            margin-top: 4px;
+            padding: 8px 14px !important;
+            border: 1px solid rgba(0, 113, 227, 0.18) !important;
+            border-radius: 8px !important;
+            background: rgba(0, 113, 227, 0.08) !important;
+            color: #0066cc !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            transition: background-color 160ms ease, transform 160ms ease;
+        }
+
+        #news-toggle-btn:hover,
+        #algorithm-toggle-btn:hover {
+            background: rgba(0, 113, 227, 0.14) !important;
+        }
+
+        #news-toggle-btn:active,
+        #algorithm-toggle-btn:active {
+            transform: scale(0.98);
         }
 
         @media (max-width: 760px) {
+            .profile-hero {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 24px 18px;
+            }
+
+            .profile-name {
+                font-size: 34px;
+            }
+
+            .profile-tag {
+                font-size: 21px;
+            }
+
+            .profile-photo-card {
+                justify-self: stretch;
+                max-width: none;
+            }
+
+            .profile-photo-card img {
+                height: auto;
+                max-height: 420px;
+            }
+
             h2 {
                 font-size: 28px;
             }
@@ -326,6 +518,10 @@
 
             .paper-media {
                 justify-content: flex-start;
+            }
+
+            .profile-links {
+                gap: 10px;
             }
         }
     </style>
@@ -379,48 +575,34 @@
         }
     </style>
 
-    <table>
-        <tbody>
-        <tr>
-            <td width="720">
-                <div id="toptitle">
-                    <h1>Yirui LIU(刘弋睿)</h1>
-                </div>
-                <h3 style="margin-top: -10px;">🎓 Senior Student @ XAUAT</h3>
-                <h3 style="margin-top: -10px;">🔬 Founder @ Vantix AI</h3>
-                <h3 style="margin-top: -10px;">😎 Deep Learning && Medical Image Analysis</h3>
-                <p style="margin-top: 20px;">
-                    <a href="http://straveycoding@gmail.com" target="_blank"><img src="./files/icon/email.png"
-                                                                                 height="32px"
-                                                                                 style="margin-bottom:-4px"></a>&nbsp;
-                    <a href="https://orcid.org/0009-0006-1716-2569" target="_blank"><img src="./files/icon/orcid.png"
-                                                                               height="30px" style="margin-bottom:-3px"></a>&nbsp;
-                    <a href="https://scholar.google.com/" target="_blank"><img src="./files/icon/google_scholar.png"
-                                                                               height="30px" style="margin-bottom:-3px"></a>&nbsp;
-                    <a href="https://github.com/Stravey" target="_blank"><img src="./files/icon/github_s.jpg"
-                                                                                   height="30px"
-                                                                                   style="margin-bottom:-3px"></a>&nbsp;
-                    <a href="https://www.xiaohongshu.com/user/profile/62c6de05000000000e00c19f" target="_blank"><img src="./files/icon/xiaohongshu.png"
-                                                                                    height="30px"
-                                                                                    style="margin-bottom:-3px"></a>&nbsp;
-                    <a href="https://www.zhihu.com/people/69-95-46-74" target="_blank"><img src="./files/icon/zhihu.png"
-                                                                                            height="30px"
-                                                                                            style="margin-bottom:-3px"></a>&nbsp;
-                    <a href="./files/my_wechat.png" target="_blank"><img src="./files/icon/wechat.png" height="30px"
-                                                                         style="margin-bottom:-3px"></a>&nbsp;
-                </p>
-            </td>
-            <td>
-                <img src="./files/avatar/mount_yr.jpg" border="0" width="300">
-                <br>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="profile-hero">
+        <div class="profile-copy">
+            <div id="toptitle">
+                <h1 class="profile-name">Yirui LIU(刘弋睿)</h1>
+            </div>
+            <div class="profile-tags">
+                <div class="profile-tag"><span class="profile-emoji">🎓</span><span>Senior Student @ XAUAT</span></div>
+                <div class="profile-tag"><span class="profile-emoji">🔬</span><span>Founder @ Vantix AI</span></div>
+                <div class="profile-tag"><span class="profile-emoji">😎</span><span>Deep Learning && Medical Image Analysis</span></div>
+            </div>
+            <div class="profile-links">
+                <a href="http://straveycoding@gmail.com" target="_blank"><img src="./files/icon/email.png" alt="Email"></a>
+                <a href="https://orcid.org/0009-0006-1716-2569" target="_blank"><img src="./files/icon/orcid.png" alt="ORCID"></a>
+                <a href="https://scholar.google.com/" target="_blank"><img src="./files/icon/google_scholar.png" alt="Google Scholar"></a>
+                <a href="https://github.com/Stravey" target="_blank"><img src="./files/icon/github_s.jpg" alt="GitHub"></a>
+                <a href="https://www.xiaohongshu.com/user/profile/62c6de05000000000e00c19f" target="_blank"><img src="./files/icon/xiaohongshu.png" alt="Xiaohongshu"></a>
+                <a href="https://www.zhihu.com/people/69-95-46-74" target="_blank"><img src="./files/icon/zhihu.png" alt="Zhihu"></a>
+                <a href="./files/my_wechat.png" target="_blank"><img src="./files/icon/wechat.png" alt="WeChat"></a>
+            </div>
+        </div>
+        <div class="profile-photo-card">
+            <img src="./files/avatar/mount_yr.jpg" alt="Yirui Liu">
+        </div>
+    </div>
 </div>
 
-<h2 style="margin-top: -10px;">Biography</h2>
-<div class="paper-section" style="font-size: 15px; padding-top: 12px; padding-bottom: 12px;">
+<h2>Biography</h2>
+<div class="paper-section bio-section">
     <p>Hi! I am <b>Yirui Liu(刘弋睿)</b>, a Senior Student at <a href="https://cn.xauat.edu.cn/" target="_blank">XAUAT
 
     </a>, supervised by <a href="https://guomugong.github.io/">Prof. Song Guo</a>. My research
@@ -617,10 +799,19 @@
 </div>
 
 <h2>Algorithms</h2>
-<div class="paper-section">
+<div class="paper-section" id="algorithms-container">
+    <div class="paper-row">
+        <div class="paper-date">July. 2026</div>
+        <div class="paper-media"><img src="./files/algorithms/luogu-badge.png" alt="Luogu"></div>
+        <div class="paper-content">
+            <p class="paper-title">LGR-290 (Div 4)</p>
+            <p class="paper-desc"><b style="color: red;">2026/7/12</b></p>
+            <p class="paper-meta"><a href="https://github.com/Stravey/Algorithm_Practice/tree/master/LG-T/2026-7-12" target="_blank">Code</a> / <a href="https://paper.link" target="_blank">Summary</a></p>
+        </div>
+    </div>
     <div class="paper-row">
         <div class="paper-date">June. 2026</div>
-        <div class="paper-media"><img src="./files/algorithms/codeforces.png" alt="Codeforces"></div>
+        <div class="paper-media"><img src="./files/algorithms/codeforces-badge.png" alt="Codeforces"></div>
         <div class="paper-content">
             <p class="paper-title">Codeforces Round 1107 (Div 3)</p>
             <p class="paper-desc"><b style="color: red;">2026/6/30</b></p>
@@ -629,7 +820,7 @@
     </div>
     <div class="paper-row">
         <div class="paper-date">Mar. 2026</div>
-        <div class="paper-media"><span class="paper-icon">AC</span></div>
+        <div class="paper-media"><img src="./files/algorithms/atcoder-badge.png" alt="AtCoder"></div>
         <div class="paper-content">
             <p class="paper-title">AtCoder Beginner Contest 450</p>
             <p class="paper-desc"><b style="color: red;">2026/3/21</b></p>
@@ -638,7 +829,7 @@
     </div>
     <div class="paper-row">
         <div class="paper-date">Mar. 2026</div>
-        <div class="paper-media"><img src="./files/algorithms/codeforces.png" alt="Codeforces"></div>
+        <div class="paper-media"><img src="./files/algorithms/codeforces-badge.png" alt="Codeforces"></div>
         <div class="paper-content">
             <p class="paper-title">Codeforces Round 1086 (Round 2)</p>
             <p class="paper-desc"><b style="color: red;">2026/3/14</b></p>
@@ -646,6 +837,61 @@
         </div>
     </div>
 </div>
+
+<div id="algorithm-toggle-wrap" style="margin-top: 8px; margin-bottom: 0px;">
+    <button id="algorithm-toggle-btn" type="button" style="cursor: pointer; border: none; background: none; padding: 0; color: #3670c9; font-size: 13px;">Show more</button>
+</div>
+
+<script>
+    (function () {
+        var container = document.getElementById('algorithms-container');
+        var btn = document.getElementById('algorithm-toggle-btn');
+        var wrap = document.getElementById('algorithm-toggle-wrap');
+        var rows = Array.prototype.slice.call(container.querySelectorAll('.paper-row'));
+        var visibleCount = 3;
+        var expanded = false;
+
+        function parseAlgorithmDate(row) {
+            var dateNode = row.querySelector('.paper-desc b');
+            var text = dateNode ? dateNode.textContent.trim() : '';
+            var match = text.match(/(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})/);
+
+            if (!match) {
+                return 0;
+            }
+
+            return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime();
+        }
+
+        rows.sort(function (a, b) {
+            return parseAlgorithmDate(b) - parseAlgorithmDate(a);
+        });
+
+        rows.forEach(function (row) {
+            container.appendChild(row);
+        });
+
+        function updateAlgorithmRows() {
+            var lastVisibleIndex = expanded ? rows.length - 1 : Math.min(visibleCount, rows.length) - 1;
+
+            rows.forEach(function (row, index) {
+                var visible = expanded || index < visibleCount;
+                row.style.display = visible ? 'grid' : 'none';
+                row.style.borderBottom = visible && index === lastVisibleIndex ? 'none' : '';
+            });
+
+            btn.textContent = expanded ? 'Show less' : 'Show more';
+            wrap.style.display = rows.length > visibleCount ? 'block' : 'none';
+        }
+
+        btn.addEventListener('click', function () {
+            expanded = !expanded;
+            updateAlgorithmRows();
+        });
+
+        updateAlgorithmRows();
+    })();
+</script>
 
 <h2>Blogs <a href="https://blog.csdn.net/2301_77270865?spm=1000.2115.3001.5343" target="_blank">link</a></h2>
 <div class="paper-section">
