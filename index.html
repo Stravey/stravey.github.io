@@ -58,22 +58,21 @@
 
         .profile-hero {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-            gap: 46px;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 38px;
             align-items: center;
-            padding: 34px 36px;
+            padding: 32px 34px;
             overflow: hidden;
-            border: 1px solid rgba(120, 120, 128, 0.16);
-            border-radius: 14px;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 247, 240, 0.88));
+            border: 1px solid rgba(120, 120, 128, 0.18);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff 0%, #fbfcff 100%);
             box-shadow:
                 0 1px 2px rgba(60, 60, 67, 0.06),
-                0 18px 42px rgba(60, 60, 67, 0.10);
+                0 16px 36px rgba(60, 60, 67, 0.08);
         }
 
         .profile-copy {
-            max-width: 690px;
+            max-width: 720px;
         }
 
         .profile-name {
@@ -81,7 +80,7 @@
             padding: 0;
             border-bottom: none;
             color: #054095;
-            font-size: 42px;
+            font-size: 40px;
             line-height: 1.08;
         }
 
@@ -93,16 +92,16 @@
 
         .profile-tags {
             display: grid;
-            gap: 12px;
-            margin: 0 0 26px;
+            gap: 11px;
+            margin: 0 0 24px;
         }
 
         .profile-tag {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #054095;
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 700;
             line-height: 1.2;
         }
@@ -114,8 +113,8 @@
             align-items: center;
             justify-content: center;
             flex: 0 0 34px;
-            border-radius: 9px;
-            background: rgba(0, 113, 227, 0.08);
+            border-radius: 8px;
+            background: rgba(5, 64, 149, 0.07);
             font-size: 21px;
         }
 
@@ -136,32 +135,33 @@
             height: 32px;
             object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 6px 16px rgba(60, 60, 67, 0.14);
+            box-shadow: none;
             transition: transform 160ms ease, box-shadow 160ms ease;
         }
 
         .profile-links a:hover img {
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px rgba(60, 60, 67, 0.18);
+            box-shadow: 0 8px 18px rgba(60, 60, 67, 0.14);
         }
 
         .profile-photo-card {
             width: 100%;
-            max-width: 340px;
+            max-width: 300px;
             justify-self: end;
-            padding: 10px;
-            border: 1px solid rgba(120, 120, 128, 0.16);
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 18px 42px rgba(60, 60, 67, 0.12);
+            padding: 0;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            box-shadow: none;
         }
 
         .profile-photo-card img {
             display: block;
             width: 100%;
-            height: 390px;
+            height: 360px;
             object-fit: cover;
-            border-radius: 11px;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
         }
 
         .smaller-image {
@@ -282,9 +282,9 @@
             width: auto;
             max-width: 220px;
             object-fit: cover;
-            border: 1px solid rgba(120, 120, 128, 0.14);
-            border-radius: 8px;
-            box-shadow: 0 6px 18px rgba(60, 60, 67, 0.14);
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            box-shadow: none;
         }
 
         @keyframes photo-scroll {
@@ -306,31 +306,29 @@
 
         h2 {
             margin: 34px 0 0;
-            padding: 0 0 14px;
-            border-bottom: 1px solid #d9d0c2;
+            padding: 0 0 12px;
+            border-bottom: 1px solid #d8d8d8;
             color: #151515;
             font-family: "Segoe Print", "Comic Sans MS", cursive, Georgia, serif;
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 700;
             letter-spacing: 0;
         }
 
         .paper-section {
             margin-top: 12px;
-            padding: 0 18px;
+            padding: 0 22px;
             overflow: hidden;
             border: 1px solid rgba(120, 120, 128, 0.16);
-            border-radius: 8px;
-            background-color: rgba(251, 247, 238, 0.94);
-            background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
-            background-size: 24px 24px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #ffffff 0%, #fdfdfd 100%);
             box-shadow:
-                0 1px 2px rgba(60, 60, 67, 0.06),
-                0 10px 28px rgba(60, 60, 67, 0.08);
+                0 1px 2px rgba(60, 60, 67, 0.05),
+                0 10px 26px rgba(60, 60, 67, 0.06);
         }
 
         .bio-section {
-            padding: 18px 24px;
+            padding: 18px 22px 10px;
             font-size: 16px;
             line-height: 1.55;
         }
@@ -351,10 +349,10 @@
         .paper-row {
             display: grid;
             grid-template-columns: 120px 210px minmax(0, 1fr);
-            gap: 24px;
+            gap: 28px;
             align-items: center;
-            padding: 24px 0;
-            border-bottom: 1px solid #ded6ca;
+            padding: 26px 0;
+            border-bottom: 1px solid #e2e2e2;
         }
 
         .paper-row:last-child {
@@ -364,7 +362,7 @@
         .paper-date {
             color: #8a8a8a;
             font-family: "Courier New", monospace;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             line-height: 1.45;
             white-space: nowrap;
@@ -407,7 +405,7 @@
         .paper-desc {
             margin: 6px 0 0;
             color: #555;
-            font-size: 17px;
+            font-size: 16px;
             line-height: 1.45;
         }
 
@@ -416,13 +414,18 @@
         }
 
         .paper-list {
-            padding: 8px 0 0;
+            padding: 0 22px;
         }
 
         .paper-list .paper-row {
-            grid-template-columns: 120px 46px minmax(0, 1fr);
+            grid-template-columns: 140px 46px minmax(0, 1fr);
             gap: 18px;
             padding: 14px 0;
+        }
+
+        .paper-list .paper-date {
+            text-align: center;
+            justify-self: center;
         }
 
         .paper-list .paper-media {
@@ -440,18 +443,17 @@
             max-width: 210px;
             max-height: 72px;
             object-fit: contain;
+            border-radius: 6px;
         }
 
         .photo-carousel {
-            background-color: #fbf7ee;
-            background-image: radial-gradient(circle, rgba(178, 162, 132, 0.42) 1px, transparent 1.25px);
-            background-size: 24px 24px;
+            background-color: #ffffff;
             border: 1px solid rgba(120, 120, 128, 0.16);
-            border-radius: 8px;
+            border-radius: 14px;
             box-shadow:
-                0 1px 2px rgba(60, 60, 67, 0.06),
-                0 10px 28px rgba(60, 60, 67, 0.08);
-            padding: 18px 18px 26px;
+                0 1px 2px rgba(60, 60, 67, 0.05),
+                0 10px 26px rgba(60, 60, 67, 0.06);
+            padding: 18px 22px 24px;
         }
 
         #news-toggle-btn,
@@ -481,6 +483,7 @@
                 grid-template-columns: 1fr;
                 gap: 24px;
                 padding: 24px 18px;
+                border-radius: 14px;
             }
 
             .profile-name {
@@ -510,6 +513,23 @@
                 grid-template-columns: 1fr;
                 gap: 10px;
                 align-items: start;
+            }
+
+            .paper-section,
+            .photo-carousel {
+                padding-left: 16px;
+                padding-right: 16px;
+                border-radius: 12px;
+            }
+
+            .paper-list {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .paper-list .paper-date {
+                justify-self: start;
+                text-align: left;
             }
 
             .paper-date {
@@ -613,7 +633,7 @@
 
     <details>
         <summary>中文 </summary>
-        <p>Hi！我是<b>刘弋睿</b>，现在是一名大四学生，在<a href="hhttps://cn.xauat.edu.cn/" target="_blank">西安建筑科技大学</a>计算机与信息工程学院学习，师从<a
+        <p>Hi！我是<b>刘弋睿</b>，现在是一名大四学生，在<a href="hhttps://cn.xauat.edu.cn/" target="_blank">西安建筑科技大学</a>计算机与信息工程学院学习，老师是<a
                 href="https://github.com/">郭松</a>副教授。我的研究方向是深度学习，包括医学图像分析、领域泛化。
         </p>
         <!-- <p>我在[会议/期刊]等学术顶会发表多篇论文。获得[奖项/荣誉]。我曾经获得[学术荣誉]等荣誉。竞赛上获得[竞赛奖项]等。</p> -->
@@ -800,6 +820,15 @@
 
 <h2>Algorithms</h2>
 <div class="paper-section" id="algorithms-container">
+    <div class="paper-row">
+        <div class="paper-date">July. 2026</div>
+        <div class="paper-media"><img src="./files/algorithms/codeforces-badge.png" alt="Codeforces"></div>
+        <div class="paper-content">
+            <p class="paper-title">LGR-294 (Div 4)</p>
+            <p class="paper-desc"><b style="color: red;">2026/7/26</b></p>
+            <p class="paper-meta"><a href="https://github.com/Stravey/Algorithm_Practice/tree/master/LG-T/2026-7-26" target="_blank">Code</a> / <a href="https://github.com/Stravey/Algorithm_Practice/blob/master/LG-T/2026-7-26/README.md" target="_blank">Summary</a></p>
+        </div>
+    </div>
     <div class="paper-row">
         <div class="paper-date">July. 2026</div>
         <div class="paper-media"><img src="./files/algorithms/codeforces-badge.png" alt="Codeforces"></div>
