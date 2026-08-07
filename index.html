@@ -73,6 +73,7 @@
 
         .profile-copy {
             max-width: 720px;
+            min-width: 0;
         }
 
         .profile-name {
@@ -104,6 +105,11 @@
             font-size: 24px;
             font-weight: 700;
             line-height: 1.2;
+        }
+
+        .profile-tag > span:last-child {
+            min-width: 0;
+            overflow-wrap: anywhere;
         }
 
         .profile-emoji {
@@ -147,6 +153,8 @@
         .profile-photo-card {
             width: 100%;
             max-width: 300px;
+            min-width: 0;
+            box-sizing: border-box;
             justify-self: end;
             padding: 0;
             border: none;
@@ -489,7 +497,7 @@
 
         @media (max-width: 760px) {
             .profile-hero {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
                 gap: 24px;
                 padding: 24px 18px;
                 border-radius: 14px;
@@ -553,12 +561,590 @@
                 gap: 10px;
             }
         }
+
+        /* Quiet, research-oriented enhancements. */
+        :root {
+            --warm-canvas: #f4efe6;
+            --warm-surface: #fffdf8;
+            --warm-surface-soft: #fbf6ee;
+            --warm-border: rgba(128, 105, 78, 0.18);
+            --warm-rule: #ded5c8;
+            --warm-accent: #6f8065;
+            --warm-accent-deep: #4f6048;
+            --warm-accent-soft: rgba(111, 128, 101, 0.16);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--warm-canvas);
+            background-image:
+                radial-gradient(circle at 8% 2%, rgba(224, 184, 125, 0.16), transparent 32rem),
+                radial-gradient(circle at 94% 24%, rgba(206, 164, 105, 0.1), transparent 28rem);
+            background-attachment: fixed;
+        }
+
+        body,
+        #layout-content {
+            background-color: transparent;
+        }
+
+        .profile-hero {
+            border-color: var(--warm-border);
+            background: linear-gradient(135deg, var(--warm-surface) 0%, var(--warm-surface-soft) 100%);
+        }
+
+        h2 {
+            border-bottom-color: var(--warm-rule);
+        }
+
+        .paper-section {
+            border-color: var(--warm-border);
+            background: linear-gradient(180deg, var(--warm-surface) 0%, #fcf8f1 100%);
+        }
+
+        .paper-row {
+            border-bottom-color: #e7ded2;
+        }
+
+        .photo-carousel {
+            border-color: var(--warm-border);
+            background-color: var(--warm-surface);
+        }
+
+        .focus-map {
+            border-color: var(--warm-border);
+            background: linear-gradient(145deg, var(--warm-surface) 0%, #f9f4eb 100%);
+        }
+
+        .focus-node {
+            background: rgba(255, 253, 248, 0.94);
+        }
+
+        h2[id],
+        #layout-content {
+            scroll-margin-top: 20px;
+        }
+
+        .profile-hero::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(
+                360px circle at var(--spot-x, 28%) var(--spot-y, 32%),
+                rgba(54, 112, 201, 0.13),
+                rgba(54, 112, 201, 0.035) 42%,
+                transparent 72%
+            );
+            opacity: 0;
+            transition: opacity 260ms ease;
+        }
+
+        .profile-hero:hover::before,
+        .profile-hero:focus-within::before {
+            opacity: 1;
+        }
+
+        .profile-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-photo-card {
+            transform: translate3d(var(--photo-x, 0), var(--photo-y, 0), 0);
+            transition: transform 260ms ease;
+            will-change: transform;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(270px, 0.8fr);
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .focus-map,
+        .now-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 330px;
+            border: 1px solid rgba(120, 120, 128, 0.16);
+            border-radius: 14px;
+            background: linear-gradient(145deg, #ffffff 0%, #f7faff 100%);
+            box-shadow:
+                0 1px 2px rgba(60, 60, 67, 0.05),
+                0 10px 26px rgba(60, 60, 67, 0.06);
+        }
+
+        .focus-map::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(111, 128, 101, 0.17) 0.8px, transparent 0.8px);
+            background-size: 22px 22px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 95%);
+        }
+
+        .focus-map-label {
+            position: absolute;
+            top: 19px;
+            left: 22px;
+            z-index: 3;
+            margin: 0;
+            color: #758196;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .focus-lines {
+            position: absolute;
+            inset: 38px 22px 14px;
+            width: calc(100% - 44px);
+            height: calc(100% - 52px);
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .focus-lines line {
+            stroke: rgba(111, 128, 101, 0.38);
+            stroke-width: 1.25;
+            stroke-dasharray: 4 8;
+            animation: focus-flow 12s linear infinite;
+        }
+
+        .focus-lines circle {
+            fill: rgba(111, 128, 101, 0.09);
+            stroke: rgba(111, 128, 101, 0.3);
+            stroke-width: 1;
+        }
+
+        @keyframes focus-flow {
+            to { stroke-dashoffset: -72; }
+        }
+
+        .focus-node {
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 34px;
+            padding: 8px 13px;
+            border: 1px solid rgba(111, 128, 101, 0.27);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #53634c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 13px;
+            font-weight: 650;
+            line-height: 1.2;
+            text-align: center;
+            box-shadow: 0 7px 20px rgba(76, 91, 69, 0.1);
+            transform: translate(-50%, -50%);
+            transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .focus-node:hover,
+        .focus-node:focus-visible {
+            z-index: 4;
+            border-color: rgba(111, 128, 101, 0.65);
+            box-shadow: 0 10px 24px rgba(76, 91, 69, 0.18);
+            transform: translate(-50%, -50%) scale(1.045);
+            outline: none;
+        }
+
+        .focus-node.core {
+            left: 50%;
+            top: 53%;
+            min-width: 116px;
+            min-height: 50px;
+            border-color: rgba(79, 96, 72, 0.44);
+            background: var(--warm-accent);
+            color: #ffffff;
+            font-size: 15px;
+            box-shadow: 0 12px 30px rgba(79, 96, 72, 0.24);
+        }
+
+        .focus-node.medical { left: 24%; top: 31%; }
+        .focus-node.robust { left: 75%; top: 28%; }
+        .focus-node.vision { left: 25%; top: 77%; }
+        .focus-node.agents { left: 76%; top: 75%; }
+
+        .now-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 330px;
+            padding: 22px;
+            box-sizing: border-box;
+            background: linear-gradient(155deg, var(--warm-accent-deep) 0%, #798b6d 100%);
+            color: #ffffff;
+        }
+
+        .now-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 22px;
+            color: rgba(255, 255, 255, 0.66);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .now-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6ce5a4;
+            box-shadow: 0 0 0 0 rgba(108, 229, 164, 0.42);
+            animation: now-pulse 2.8s ease-out infinite;
+        }
+
+        @keyframes now-pulse {
+            70%, 100% { box-shadow: 0 0 0 8px rgba(108, 229, 164, 0); }
+        }
+
+        .now-list {
+            display: grid;
+            gap: 18px;
+            margin: 0;
+        }
+
+        .now-item {
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .now-item:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .now-item dt {
+            margin: 0 0 4px;
+            color: rgba(255, 255, 255, 0.55);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .now-item dd {
+            margin: 0;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .section-nav {
+            position: fixed;
+            top: 50%;
+            right: max(18px, calc((100vw - 1120px) / 2 - 76px));
+            z-index: 20;
+            display: none;
+            width: 40px;
+            padding: 9px 7px;
+            box-sizing: border-box;
+            overflow: hidden;
+            border: 1px solid rgba(128, 105, 78, 0.2);
+            border-radius: 21px;
+            background: rgba(255, 253, 248, 0.88);
+            box-shadow:
+                0 2px 6px rgba(78, 66, 52, 0.06),
+                0 14px 34px rgba(78, 66, 52, 0.12);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transform: translateY(-50%);
+            transition: width 220ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 220ms ease;
+        }
+
+        .section-nav:hover,
+        .section-nav:focus-within {
+            width: 142px;
+            border-radius: 18px;
+        }
+
+        .section-nav-track {
+            position: absolute;
+            top: 17px;
+            bottom: 17px;
+            right: 19px;
+            z-index: 0;
+            width: 2px;
+            overflow: hidden;
+            border-radius: 2px;
+            background: rgba(111, 128, 101, 0.12);
+        }
+
+        .section-nav-progress {
+            display: block;
+            width: 100%;
+            height: 0;
+            border-radius: inherit;
+            background: var(--warm-accent);
+            transition: height 100ms linear;
+        }
+
+        .section-nav ul {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .section-nav li {
+            position: relative;
+            margin: 0;
+        }
+
+        .section-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            height: 22px;
+            padding: 0 28px 0 9px;
+            box-sizing: border-box;
+            overflow: hidden;
+            border: none;
+            border-radius: 9px;
+            color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            text-align: right;
+            white-space: nowrap;
+            opacity: 1;
+            transform: none;
+            transition: color 150ms ease, background-color 150ms ease;
+        }
+
+        .section-nav:hover a,
+        .section-nav:focus-within a {
+            color: #7e7a72;
+        }
+
+        .section-nav a::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 9px;
+            width: 8px;
+            height: 3px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 3px;
+            background: #98a690;
+            box-shadow: 0 0 0 1px var(--warm-surface);
+            transform: translateY(-50%);
+            transition: width 160ms ease, background-color 160ms ease, border-color 160ms ease;
+        }
+
+        .section-nav a:hover,
+        .section-nav a:focus-visible {
+            color: #465440;
+            background: rgba(111, 128, 101, 0.09);
+            outline: none;
+        }
+
+        .section-nav:hover a.is-active,
+        .section-nav:focus-within a.is-active {
+            color: #465440;
+            background: var(--warm-accent-soft);
+        }
+
+        .section-nav a.is-active::after {
+            right: 5px;
+            width: 16px;
+            height: 4px;
+            border-radius: 4px;
+            background: var(--warm-accent);
+            box-shadow: 0 0 0 2px var(--warm-surface);
+        }
+
+        @media (min-width: 1380px) and (min-height: 720px) {
+            .section-nav { display: block; }
+        }
+
+        .reveal-ready .reveal-item {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-ready .reveal-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-track img {
+            cursor: zoom-in;
+            transition: transform 180ms ease, filter 180ms ease;
+        }
+
+        .photo-track img:hover {
+            filter: brightness(1.03);
+            transform: translateY(-3px);
+        }
+
+        .photo-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            padding: 28px 72px;
+            box-sizing: border-box;
+            visibility: hidden;
+            background: rgba(9, 16, 28, 0.84);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 180ms ease, visibility 180ms ease;
+        }
+
+        .photo-lightbox.is-open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .lightbox-figure {
+            max-width: min(980px, 88vw);
+            max-height: 86vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .lightbox-image {
+            display: block;
+            max-width: 100%;
+            max-height: 78vh;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.36);
+            transform: scale(0.985);
+            transition: transform 220ms ease;
+        }
+
+        .photo-lightbox.is-open .lightbox-image { transform: scale(1); }
+
+        .lightbox-caption {
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.76);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 13px;
+        }
+
+        .lightbox-close,
+        .lightbox-arrow {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 160ms ease, transform 160ms ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: scale(1.05);
+        }
+
+        .lightbox-close {
+            top: 22px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .lightbox-arrow {
+            top: 50%;
+            width: 46px;
+            height: 46px;
+            font-size: 28px;
+            line-height: 1;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-arrow:hover { transform: translateY(-50%) scale(1.05); }
+        .lightbox-prev { left: 22px; }
+        .lightbox-next { right: 22px; }
+        body.lightbox-open { overflow: hidden; }
+
+        @media (max-width: 900px) {
+            .insight-grid { grid-template-columns: minmax(0, 1fr); }
+            .focus-map { min-height: 320px; }
+            .now-card { min-height: 0; }
+        }
+
+        @media (max-width: 560px) {
+            .focus-map { min-height: 360px; }
+            .focus-node { max-width: 120px; font-size: 11px; }
+            .focus-node.core { min-width: 98px; font-size: 13px; }
+            .focus-node.medical { left: 25%; top: 29%; }
+            .focus-node.robust { left: 74%; top: 29%; }
+            .focus-node.vision { left: 25%; top: 78%; }
+            .focus-node.agents { left: 75%; top: 78%; }
+            .photo-lightbox { padding: 60px 14px; }
+            .lightbox-arrow { width: 40px; height: 40px; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .focus-lines line,
+            .now-pulse,
+            .photo-track,
+            .scroll-content {
+                animation: none !important;
+            }
+
+            .profile-photo-card,
+            .reveal-ready .reveal-item,
+            .lightbox-image {
+                transform: none !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
     <script type="text/javascript" src="./files/jquery-1.12.4.min.js"></script>
 
 </head>
 
 <body>
+<nav class="section-nav" aria-label="Page sections">
+    <span class="section-nav-track" aria-hidden="true"><span class="section-nav-progress"></span></span>
+    <ul>
+        <li><a href="#layout-content">Home</a></li>
+        <li><a href="#biography">Biography</a></li>
+        <li><a href="#research-focus">Focus</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#opensource">Open Source</a></li>
+        <li><a href="#algorithms">Algorithms</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 <div id="layout-content" style="margin-top:25px">
     <a href="https://github.com/stravey" class="github-corner">
         <svg width="80" height="80" viewBox="0 0 250 250"
@@ -630,7 +1216,7 @@
     </div>
 </div>
 
-<h2>Biography</h2>
+<h2 id="biography">Biography</h2>
 <div class="paper-section bio-section">
     <p>Hi! I am <b>Yirui Liu(刘弋睿)</b>, a Senior Student at <a href="https://cn.xauat.edu.cn/" target="_blank">XAUAT
 
@@ -649,7 +1235,47 @@
     </details>
 </div>
 
-<h2>News</h2>
+<h2 id="research-focus">Research Focus</h2>
+<div class="insight-grid">
+    <div class="focus-map" aria-label="Research focus map">
+        <p class="focus-map-label">Research constellation</p>
+        <svg class="focus-lines" viewBox="0 0 640 278" preserveAspectRatio="none" aria-hidden="true">
+            <circle cx="320" cy="145" r="62"></circle>
+            <line x1="320" y1="145" x2="154" y2="72"></line>
+            <line x1="320" y1="145" x2="480" y2="68"></line>
+            <line x1="320" y1="145" x2="160" y2="220"></line>
+            <line x1="320" y1="145" x2="486" y2="212"></line>
+        </svg>
+        <span class="focus-node core" tabindex="0">Deep Learning</span>
+        <span class="focus-node medical" tabindex="0">Medical Image Analysis</span>
+        <span class="focus-node robust" tabindex="0">Robust Segmentation</span>
+        <span class="focus-node vision" tabindex="0">Computer Vision</span>
+        <span class="focus-node agents" tabindex="0">AI Agents</span>
+    </div>
+    <aside class="now-card" aria-label="Currently">
+        <p class="now-eyebrow"><span class="now-pulse" aria-hidden="true"></span>Currently</p>
+        <dl class="now-list">
+            <div class="now-item">
+                <dt>Researching</dt>
+                <dd>Robust Medical Image Segmentation</dd>
+            </div>
+            <div class="now-item">
+                <dt>Building</dt>
+                <dd>AI Agent and Computer Vision projects at Vantix AI</dd>
+            </div>
+            <div class="now-item">
+                <dt>Practicing</dt>
+                <dd>Competitive Programming</dd>
+            </div>
+            <div class="now-item">
+                <dt>Based in</dt>
+                <dd>Xi'an, China</dd>
+            </div>
+        </dl>
+    </aside>
+</div>
+
+<h2 id="news">News</h2>
 <div class="paper-section paper-list" id="news-container">
     <div class="paper-row">
         <div class="paper-date">June. 2026</div>
@@ -750,7 +1376,7 @@
     })();
 </script>
 
-<h2>Photos</h2>
+<h2 id="photos">Photos</h2>
 <div class="photo-carousel" aria-label="Photo gallery">
     <div class="photo-track">
         <img src="./files/photo/1.jpg" alt="Photo 1">
@@ -764,7 +1390,7 @@
     </div>
 </div>
 
-<h2>Education</h2>
+<h2 id="education">Education</h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">Sep. 2022<br>-<br>Jul. 2026</div>
@@ -777,7 +1403,7 @@
     </div>
 </div>
 
-<h2>Research Experience</h2>
+<h2 id="research">Research Experience</h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">Feb. 2026<br>-<br>Present</div>
@@ -799,7 +1425,7 @@
     </div>
 </div>
 
-<h2>Publications | <a href="https://scholar.google.com/" target="_blank">My Google Scholar</a></h2>
+<h2 id="publications">Publications | <a href="https://scholar.google.com/" target="_blank">My Google Scholar</a></h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">202X</div>
@@ -813,7 +1439,7 @@
     </div>
 </div>
 
-<h2>OpenSource</h2>
+<h2 id="opensource">OpenSource</h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">202X</div>
@@ -827,7 +1453,7 @@
     </div>
 </div>
 
-<h2>Algorithms</h2>
+<h2 id="algorithms">Algorithms</h2>
 <div class="paper-section" id="algorithms-container">
     <div class="paper-row">
         <div class="paper-date">July. 2026</div>
@@ -940,7 +1566,7 @@
     })();
 </script>
 
-<h2>Blogs <a href="https://blog.csdn.net/2301_77270865?spm=1000.2115.3001.5343" target="_blank">link</a></h2>
+<h2 id="blogs">Blogs <a href="https://blog.csdn.net/2301_77270865?spm=1000.2115.3001.5343" target="_blank">link</a></h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">202X</div>
@@ -954,7 +1580,7 @@
     </div>
 </div>
 
-<h2>Awards</h2>
+<h2 id="awards">Awards</h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">202X</div>
@@ -968,7 +1594,7 @@
     </div>
 </div>
 
-<h2>Contact</h2>
+<h2 id="contact">Contact</h2>
 <div class="paper-section">
     <div class="paper-row">
         <div class="paper-date">Email</div>
@@ -979,6 +1605,182 @@
         </div>
     </div>
 </div>
+
+<div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close photo viewer">&times;</button>
+    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous photo">&#8249;</button>
+    <figure class="lightbox-figure">
+        <img class="lightbox-image" src="" alt="">
+        <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next photo">&#8250;</button>
+</div>
+
+<script>
+    (function () {
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        /* Pointer-aware light for the hero, kept deliberately subtle. */
+        var hero = document.querySelector('.profile-hero');
+        var photoCard = document.querySelector('.profile-photo-card');
+
+        if (hero && photoCard && window.matchMedia('(pointer: fine)').matches) {
+            hero.addEventListener('pointermove', function (event) {
+                var rect = hero.getBoundingClientRect();
+                var x = event.clientX - rect.left;
+                var y = event.clientY - rect.top;
+                hero.style.setProperty('--spot-x', x + 'px');
+                hero.style.setProperty('--spot-y', y + 'px');
+
+                if (!prefersReducedMotion.matches) {
+                    var moveX = ((x / rect.width) - 0.5) * 6;
+                    var moveY = ((y / rect.height) - 0.5) * 5;
+                    photoCard.style.setProperty('--photo-x', moveX.toFixed(2) + 'px');
+                    photoCard.style.setProperty('--photo-y', moveY.toFixed(2) + 'px');
+                }
+            });
+
+            hero.addEventListener('pointerleave', function () {
+                photoCard.style.setProperty('--photo-x', '0px');
+                photoCard.style.setProperty('--photo-y', '0px');
+            });
+        }
+
+        /* Reveal whole content blocks once, rather than animating every row. */
+        var revealItems = document.querySelectorAll(
+            '.profile-hero, h2, .paper-section, .photo-carousel, .insight-grid'
+        );
+
+        if ('IntersectionObserver' in window && !prefersReducedMotion.matches) {
+            document.documentElement.classList.add('reveal-ready');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -24px' });
+
+            Array.prototype.forEach.call(revealItems, function (item) {
+                item.classList.add('reveal-item');
+                revealObserver.observe(item);
+            });
+        }
+
+        /* Wide-screen section guide and document progress. */
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll('.section-nav a'));
+        var navProgress = document.querySelector('.section-nav-progress');
+        var navTicking = false;
+
+        function updateSectionGuide() {
+            var marker = window.scrollY + window.innerHeight * 0.3;
+            var activeLink = navLinks[0];
+
+            navLinks.forEach(function (link) {
+                var target = document.querySelector(link.getAttribute('href'));
+                if (target && target.offsetTop <= marker) {
+                    activeLink = link;
+                }
+                link.classList.remove('is-active');
+                link.removeAttribute('aria-current');
+            });
+
+            if (activeLink) {
+                activeLink.classList.add('is-active');
+                activeLink.setAttribute('aria-current', 'location');
+            }
+
+            var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollable > 0 ? Math.min(100, Math.max(0, window.scrollY / scrollable * 100)) : 0;
+            if (navProgress) {
+                navProgress.style.height = progress + '%';
+            }
+            navTicking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (!navTicking) {
+                window.requestAnimationFrame(updateSectionGuide);
+                navTicking = true;
+            }
+        }, { passive: true });
+        window.addEventListener('resize', updateSectionGuide);
+        updateSectionGuide();
+
+        /* Lightweight gallery viewer with mouse and keyboard controls. */
+        var galleryImages = Array.prototype.slice.call(document.querySelectorAll('.photo-track img'));
+        var lightbox = document.getElementById('photo-lightbox');
+        var lightboxImage = lightbox ? lightbox.querySelector('.lightbox-image') : null;
+        var lightboxCaption = lightbox ? lightbox.querySelector('.lightbox-caption') : null;
+        var closeButton = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+        var previousButton = lightbox ? lightbox.querySelector('.lightbox-prev') : null;
+        var nextButton = lightbox ? lightbox.querySelector('.lightbox-next') : null;
+        var currentPhoto = 0;
+        var previousFocus = null;
+
+        function renderPhoto() {
+            var source = galleryImages[currentPhoto];
+            if (!source || !lightboxImage || !lightboxCaption) return;
+            lightboxImage.src = source.src;
+            lightboxImage.alt = source.alt;
+            lightboxCaption.textContent = source.alt || ('Photo ' + (currentPhoto + 1));
+        }
+
+        function openLightbox(index) {
+            if (!lightbox) return;
+            currentPhoto = index;
+            previousFocus = document.activeElement;
+            renderPhoto();
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('lightbox-open');
+            closeButton.focus();
+        }
+
+        function closeLightbox() {
+            if (!lightbox) return;
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('lightbox-open');
+            if (previousFocus && previousFocus.focus) previousFocus.focus();
+        }
+
+        function stepPhoto(direction) {
+            currentPhoto = (currentPhoto + direction + galleryImages.length) % galleryImages.length;
+            renderPhoto();
+        }
+
+        galleryImages.forEach(function (image, index) {
+            image.setAttribute('tabindex', '0');
+            image.setAttribute('role', 'button');
+            image.setAttribute('aria-label', 'Open ' + (image.alt || 'photo'));
+            image.addEventListener('click', function () { openLightbox(index); });
+            image.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openLightbox(index);
+                }
+            });
+        });
+
+        if (lightbox) {
+            closeButton.addEventListener('click', closeLightbox);
+            previousButton.addEventListener('click', function () { stepPhoto(-1); });
+            nextButton.addEventListener('click', function () { stepPhoto(1); });
+            lightbox.addEventListener('click', function (event) {
+                if (event.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (event.key === 'Escape') closeLightbox();
+                if (event.key === 'ArrowLeft') stepPhoto(-1);
+                if (event.key === 'ArrowRight') stepPhoto(1);
+            });
+        }
+    })();
+</script>
 
 </body>
 </html>
