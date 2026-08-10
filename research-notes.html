@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yirui Liu's research notes and progress at XAUAT Lab.">
+    <link rel="shortcut icon" href="./files/icon/favicon.jpg">
+    <link rel="stylesheet" href="./files/jemdoc.css" type="text/css">
+    <title>Research Notes | Yirui Liu</title>
+    <style>
+        :root {
+            --canvas: #f4efe6;
+            --surface: #fffdf8;
+            --surface-soft: #fbf6ee;
+            --border: rgba(128, 105, 78, 0.18);
+            --rule: #ded5c8;
+            --ink: #171916;
+            --muted: #6f706a;
+            --accent: #6f8065;
+            --accent-deep: #4f6048;
+            --accent-soft: rgba(111, 128, 101, 0.13);
+            --link: #3670c9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background-color: var(--canvas);
+            background-image:
+                radial-gradient(circle at 8% 2%, rgba(224, 184, 125, 0.16), transparent 32rem),
+                radial-gradient(circle at 94% 24%, rgba(206, 164, 105, 0.1), transparent 28rem);
+            background-attachment: fixed;
+        }
+
+        body {
+            width: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 42px 40px 56px;
+            color: var(--ink);
+            background: transparent;
+            font-family: Georgia, serif;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        a:hover {
+            border-bottom: 1px dotted currentColor;
+        }
+
+        .page-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 13px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--accent-deep);
+            font-weight: 700;
+        }
+
+        .draft-status {
+            padding: 5px 10px;
+            border: 1px solid rgba(111, 128, 101, 0.25);
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-deep);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero,
+        .section-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: linear-gradient(145deg, var(--surface) 0%, var(--surface-soft) 100%);
+            box-shadow:
+                0 1px 2px rgba(78, 66, 52, 0.05),
+                0 14px 34px rgba(78, 66, 52, 0.08);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 38px 40px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: -110px;
+            right: -90px;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(111, 128, 101, 0.17), transparent 68%);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 12px;
+            color: var(--accent);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+            border: none;
+            color: #151515;
+            font-family: "Segoe Print", "Comic Sans MS", cursive, Georgia, serif;
+            font-size: clamp(38px, 6vw, 58px);
+            line-height: 1.08;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 18px 0 0;
+            color: #4f504c;
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        .facts {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin: 28px 0 0;
+        }
+
+        .fact {
+            padding: 14px 15px;
+            border: 1px solid rgba(111, 128, 101, 0.18);
+            border-radius: 11px;
+            background: rgba(255, 253, 248, 0.72);
+        }
+
+        .fact dt {
+            margin: 0 0 5px;
+            color: #85827a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .fact dd {
+            margin: 0;
+            color: #343631;
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .section-heading {
+            margin: 36px 0 12px;
+            padding: 0 0 11px;
+            border-bottom: 1px solid var(--rule);
+            color: #151515;
+            font-family: "Segoe Print", "Comic Sans MS", cursive, Georgia, serif;
+            font-size: 30px;
+            line-height: 1.2;
+        }
+
+        .section-card {
+            padding: 26px 28px;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .focus-item {
+            min-height: 150px;
+            padding: 19px;
+            border: 1px solid rgba(111, 128, 101, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 253, 248, 0.75);
+        }
+
+        .focus-number {
+            display: block;
+            margin-bottom: 24px;
+            color: #9a988f;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .focus-item h3 {
+            margin: 0 0 8px;
+            padding: 0;
+            border: none;
+            color: var(--accent-deep);
+            font-size: 18px;
+            line-height: 1.25;
+        }
+
+        .focus-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            left: 91px;
+            width: 1px;
+            background: var(--rule);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 72px 18px minmax(0, 1fr);
+            gap: 10px;
+            padding: 0 0 25px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-date {
+            padding-top: 2px;
+            color: #848078;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: relative;
+            z-index: 1;
+            width: 9px;
+            height: 9px;
+            margin: 5px auto 0;
+            border: 2px solid var(--surface);
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 1px rgba(111, 128, 101, 0.35);
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 6px;
+            padding: 0;
+            border: none;
+            color: #292b27;
+            font-size: 17px;
+            line-height: 1.3;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .entry-template {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .template-block {
+            padding: 16px 18px;
+            border: 1px dashed rgba(111, 128, 101, 0.32);
+            border-radius: 10px;
+            background: rgba(111, 128, 101, 0.045);
+        }
+
+        .template-block strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-deep);
+            font-size: 14px;
+        }
+
+        .template-block span {
+            color: #848078;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #88847c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 24px 18px 40px;
+            }
+
+            .hero {
+                padding: 28px 22px;
+            }
+
+            .facts,
+            .focus-grid,
+            .entry-template {
+                grid-template-columns: 1fr;
+            }
+
+            .section-card {
+                padding: 22px 18px;
+            }
+
+            .timeline::before {
+                left: 73px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 55px 16px minmax(0, 1fr);
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="page-nav" aria-label="Research notes navigation">
+        <a class="back-link" href="./index.html#research">← Back to Research Experience</a>
+        <span class="draft-status">Draft · Aug. 2026</span>
+    </nav>
+
+    <header class="hero">
+        <p class="eyebrow">XAUAT Lab · Research Assistant</p>
+        <h1>Research Notes</h1>
+        <p class="hero-copy">A growing record of my research questions, reading notes, experiments, and progress in robust medical image segmentation.</p>
+        <dl class="facts">
+            <div class="fact">
+                <dt>Role</dt>
+                <dd>Research Assistant</dd>
+            </div>
+            <div class="fact">
+                <dt>Current Focus</dt>
+                <dd>Robust Medical Image Segmentation</dd>
+            </div>
+            <div class="fact">
+                <dt>Since</dt>
+                <dd>April 2026</dd>
+            </div>
+        </dl>
+    </header>
+
+    <main>
+        <h2 class="section-heading">Current Directions</h2>
+        <section class="section-card focus-grid" aria-label="Current research directions">
+            <article class="focus-item">
+                <span class="focus-number">01</span>
+                <h3>Robustness Evaluation</h3>
+                <p>Studying how segmentation models behave under distribution shifts, noise, and acquisition differences.</p>
+            </article>
+            <article class="focus-item">
+                <span class="focus-number">02</span>
+                <h3>Domain Generalization</h3>
+                <p>Exploring methods that generalize across unseen hospitals, scanners, and imaging conditions.</p>
+            </article>
+            <article class="focus-item">
+                <span class="focus-number">03</span>
+                <h3>Reproducible Experiments</h3>
+                <p>Building a clear workflow for datasets, baselines, metrics, ablations, and experiment tracking.</p>
+            </article>
+        </section>
+
+        <h2 class="section-heading">Timeline</h2>
+        <section class="section-card" aria-label="Research timeline">
+            <ol class="timeline">
+                <li class="timeline-item">
+                    <time class="timeline-date" datetime="2026-08">Aug. 2026</time>
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-content">
+                        <h3>Research notes page initialized</h3>
+                        <p>Created this page to organize research questions, paper notes, experiment results, and next steps.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <time class="timeline-date" datetime="2026-04">Apr. 2026</time>
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-content">
+                        <h3>Joined XAUAT Lab</h3>
+                        <p>Started working as a Research Assistant with a focus on computer vision and robust medical image segmentation.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <h2 class="section-heading">Future Entry Template</h2>
+        <section class="section-card entry-template" aria-label="Template for future research entries">
+            <div class="template-block">
+                <strong>Research Question</strong>
+                <span>What problem am I trying to understand or solve?</span>
+            </div>
+            <div class="template-block">
+                <strong>Reading Notes</strong>
+                <span>Key papers, methods, assumptions, and takeaways.</span>
+            </div>
+            <div class="template-block">
+                <strong>Experiments</strong>
+                <span>Setup, datasets, metrics, results, and observations.</span>
+            </div>
+            <div class="template-block">
+                <strong>Next Steps</strong>
+                <span>Open questions and the next concrete actions to take.</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>Research notes by Yirui Liu · This page will be updated gradually.</footer>
+</body>
+</html>

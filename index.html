@@ -455,6 +455,40 @@
             font-weight: 700;
         }
 
+        .research-title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .research-log-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 3px 9px;
+            box-sizing: border-box;
+            border: 1px solid rgba(111, 128, 101, 0.3);
+            border-radius: 999px;
+            background: rgba(111, 128, 101, 0.1);
+            color: #53634c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .research-log-badge:hover,
+        .research-log-badge:focus-visible {
+            border-bottom: 1px solid rgba(111, 128, 101, 0.55);
+            border-color: rgba(111, 128, 101, 0.55);
+            background: rgba(111, 128, 101, 0.18);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
         #algorithms-container .paper-media img {
             width: 210px;
             max-width: 210px;
@@ -1418,7 +1452,10 @@
         <div class="paper-date">Apr. 2026<br>-<br>Present</div>
         <div class="paper-media"><span class="paper-icon">Lab</span></div>
         <div class="paper-content">
-            <p class="paper-title"><a href="https://github.com/guomugong">XAUAT Lab</a></p>
+            <p class="paper-title research-title-row">
+                <a href="https://github.com/guomugong">XAUAT Lab</a>
+                <a class="research-log-badge" href="./research-notes.html" aria-label="Open Yirui Liu's research notes">Research Notes ↗</a>
+            </p>
             <p class="paper-meta"><b>Research Assistant</b>, Xi'an, Focus On Computer Vision</p>
             <p class="paper-desc">The robustness of medical image segmentation models.</p>
         </div>
